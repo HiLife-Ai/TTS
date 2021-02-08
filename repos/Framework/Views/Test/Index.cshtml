@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Framework.Models.Sample>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div class="container" style="width:60%;margin-top:2%">
+
+<table class="table table-striped" style="width:60%">
+      <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Department</th>
+
+
+      </tr>
+      <tbody>
+
+
+              @foreach(var item in ViewData["EmployeeList"] as List<Framework.Models.Sample>)
+              {
+                  <tr>
+                      <td>@item.EmployeeID</td>
+                      <td>@item.Name</td>
+                      <td>@item.Department</td>
+                  </tr>
+              }
+
+              <tr></tr>
+      </tbody>
+  </table>
+<ul class="list-group">
+
+    <li class="list-group-item">
+        Your viewBag value is <b>@ViewBag.EmployeeNameVB</b>
+    </li>
+    <li class="list-group-item">
+        your viewData value is <b>@ViewData["EmployeeNameVD"]</b>
+    </li>
+    <li class="list-group-item">
+        Your tempData data value is <b>@TempData["EmployeeNameTD"]</b>
+    </li>
+    <li class="list-group-item">
+        <a href="/Test/SecondPage">Go to second page</a>
+    </li>
+</ul>
+    </div>
+
