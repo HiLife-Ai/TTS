@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Day9.Models.OrderViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<h2>Index</h2>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div class="container" styles="width:50px;margin-top:50%">
+    @if (Model != null)
+    {
+    <ul class="list-group" style="width:20%">
+        @foreach(var item in Model) {
+         <li class="list-group-item">
+             @*<a class="btn-block btn-primary" href="/User/Blue?CustomerID=@item.CustomerID">@item.CustomerID">@item.CustomerName</a>*@
+             @Html.ActionLink(item.CustomerName, "Blue", new { CustomerID=item.CustomerID}, new { @class = "btn btn-block btn-success" })
+        </li>
+        }
+        
+    </ul>
+    }
+</div>
+

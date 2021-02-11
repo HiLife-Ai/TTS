@@ -13,10 +13,10 @@ namespace Day9.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class sskEntities1 : DbContext
+    public partial class sskEntities2 : DbContext
     {
-        public sskEntities1()
-            : base("name=sskEntities1")
+        public sskEntities2()
+            : base("name=sskEntities2")
         {
         }
     
