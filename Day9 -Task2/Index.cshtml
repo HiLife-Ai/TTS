@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Day9.Models.CustomerViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<h2>Index</h2>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div class="container" style="width:60%;margin-top:2%">
+    @if (Model != null) {
+
+     <table class="table table-striped">
+         <tr>
+             <th>CustomerID</th>
+             <th>CustomerName</th>
+             <th>Phoneno</th>
+             <th>MobileID</th>
+             <th>mobiletype</th>
+         </tr>
+         <tbody>
+
+             @foreach(var item in Model) 
+              {
+              <tr>
+
+                  <td>@item.CustomerID</td>
+
+                  <td>@item.CustomerName</td>
+
+                  <td>@item.Phoneno</td>
+
+                  <td>@item.MobileID</td>
+
+
+                  <td>@item.Mobiletype</td>
+              </tr>
+
+
+
+        }
+         </tbody>
+     </table>
+    
+           }
+</div>
+

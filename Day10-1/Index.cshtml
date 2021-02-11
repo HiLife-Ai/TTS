@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Day19.Models.SampleViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<h2>Index</h2>
+<link href="~/Content/bootstrap.min.css" rel="stylesheey" />
+<div class="container" style="width:20%;margin-left:50%",>
+
+
+    @{ 
+        string message = "hi Krishna! This is Geetha";
+        int i = 20;
+        int j = 25;
+        int k = i + j;
+        <b>@message</b>
+        <div>
+            <b>Rohit number is:</b>@k 
+        </div>
+        <div>
+            Today is : @DateTime.Now.DayOfWeek 
+        </div>
+    }
+    @for (int num =0; num < 10; num++)
+    {
+     <div>
+         number is : @num at @DateTime.Now.Second
+     </div>
+
+
+    }
+
+
+    @*   @{
+        int s = 6;
+    }
+    @if (s % 2 == 0)
+    {
+    <div>
+        @s is an even number
+    </div>
+    }
+    else {
+    <div>
+        @s is an odd number
+    </div>
+    }    *@
+    
+</div>
