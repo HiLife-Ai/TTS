@@ -1,0 +1,27 @@
+﻿@model DayEleven.Models.EmployeeViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<h2>Index</h2>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div class="container" style="width:40%;margin-top:2%">
+
+    @Html.DropDownListFor(model => model.DepartmentID, ViewBag.Lovsan2list as SelectList,"--select", new { @class="form-control"})
+
+    @Html.TextBoxFor(model => model.EmpName, new { @class="form-control",@placeholder="Name"})
+
+    @Html.TextBoxFor(model => model.Address, new { @class = "form-control",@placeholder="Address" })
+
+     <div class="checkbox">
+         <label>
+             @Html.CheckBoxFor(m=>m.DepartmentName)
+             Check out this
+         </label>
+     </div>
+      <input type="submit" value="SUBMIT" class="btn btn-block btn-primary" />
+
+</div>
+
+

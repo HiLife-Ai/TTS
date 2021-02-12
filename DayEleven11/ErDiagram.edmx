@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LovsanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="lovsan">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpName" Type="varchar" MaxLength="50" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="lovsan2">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_lovsan_lovsan2">
+          <End Role="lovsan2" Type="Self.lovsan2" Multiplicity="1" />
+          <End Role="lovsan" Type="Self.lovsan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lovsan2">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="lovsan">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_lovsan2_lovsan2">
+          <End Role="lovsan2" Type="Self.lovsan2" Multiplicity="1" />
+          <End Role="lovsan21" Type="Self.lovsan2" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="lovsan2">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="lovsan21">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LovsanModelStoreContainer">
+          <EntitySet Name="lovsan" EntityType="Self.lovsan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lovsan2" EntityType="Self.lovsan2" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_lovsan_lovsan2" Association="Self.FK_lovsan_lovsan2">
+            <End Role="lovsan2" EntitySet="lovsan2" />
+            <End Role="lovsan" EntitySet="lovsan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_lovsan2_lovsan2" Association="Self.FK_lovsan2_lovsan2">
+            <End Role="lovsan2" EntitySet="lovsan2" />
+            <End Role="lovsan21" EntitySet="lovsan2" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LovsanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="lovsan">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="lovsan2" Relationship="Self.FK_lovsan_lovsan2" FromRole="lovsan" ToRole="lovsan2" />
+        </EntityType>
+        <EntityType Name="lovsan2">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="lovsans" Relationship="Self.FK_lovsan_lovsan2" FromRole="lovsan2" ToRole="lovsan" />
+          <NavigationProperty Name="lovsan21" Relationship="Self.FK_lovsan2_lovsan2" FromRole="lovsan2" ToRole="lovsan21" />
+          <NavigationProperty Name="lovsan22" Relationship="Self.FK_lovsan2_lovsan2" FromRole="lovsan21" ToRole="lovsan2" />
+        </EntityType>
+        <Association Name="FK_lovsan_lovsan2">
+          <End Role="lovsan2" Type="Self.lovsan2" Multiplicity="1" />
+          <End Role="lovsan" Type="Self.lovsan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lovsan2">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="lovsan">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_lovsan2_lovsan2">
+          <End Role="lovsan2" Type="Self.lovsan2" Multiplicity="1" />
+          <End Role="lovsan21" Type="Self.lovsan2" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="lovsan2">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="lovsan21">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LovsanEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="lovsans" EntityType="Self.lovsan" />
+          <EntitySet Name="lovsan2" EntityType="Self.lovsan2" />
+          <AssociationSet Name="FK_lovsan_lovsan2" Association="Self.FK_lovsan_lovsan2">
+            <End Role="lovsan2" EntitySet="lovsan2" />
+            <End Role="lovsan" EntitySet="lovsans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_lovsan2_lovsan2" Association="Self.FK_lovsan2_lovsan2">
+            <End Role="lovsan2" EntitySet="lovsan2" />
+            <End Role="lovsan21" EntitySet="lovsan2" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LovsanModelStoreContainer" CdmEntityContainer="LovsanEntities1">
+          <EntitySetMapping Name="lovsans">
+            <EntityTypeMapping TypeName="LovsanModel.lovsan">
+              <MappingFragment StoreEntitySet="lovsan">
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lovsan2">
+            <EntityTypeMapping TypeName="LovsanModel.lovsan2">
+              <MappingFragment StoreEntitySet="lovsan2">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
