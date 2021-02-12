@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div class="container" style="width:40%;margin-top:2%">
+    @{ 
+        string message = "how are you today?";
+        int i = 2;
+        int j = 3;
+        int k = i + j;
+    }
+    <b>@message</b>
+    <div>
+        <b> Your sum is :</b>@k
+    </div>
+    <div>
+        Today is : @DateTime.Now.DayOfWeek
+    </div>
+
+    @for (int num = 0; num < 10; num++)
+    {
+<div>
+    number is : @num at @DateTime.Now.Second
+</div>
+    }
+     @{ 
+        int l = 6;
+    }
+            @if (l % 2 == 0)
+{
+                <div>
+                    @l is an even number 
+                </div>
+            }
+            else
+            {<div>
+    @l is an odd number 
+    </div>
+     
+                
+            } 
+    
+</div>
+
+
