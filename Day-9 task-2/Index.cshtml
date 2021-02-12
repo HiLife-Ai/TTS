@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Trust.Models.Decode>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div class="container" style="width:60%;margin-top:2%">
+    @if (Model != null)
+    {
+
+    <table class="table table-striped">
+
+        <tr>
+            <th>COMPANY_ID</th>
+            <th>COMPANY_NAME</th>
+            <th>COMPANY_CITY</th>
+            <th>ITEM_NAME</th>
+
+        </tr>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+
+            <tr>
+                <td>@item.COMPANY_ID</td>
+                <td>@item.COMPANY_NAME</td>
+                <td>@item.COMPANY_CITY</td>
+                <td>@item.ITEM_NAME</td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+    }
+</div>
+    
+
+

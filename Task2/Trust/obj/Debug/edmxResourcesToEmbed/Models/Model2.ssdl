@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="taskModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="COMPANY_ID" />
+    </Key>
+    <Property Name="COMPANY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="COMPANY_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="COMPANY_CITY" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'task.dbo.food' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="food">
+    <Key>
+      <PropertyRef Name="COMPANY_ID" />
+    </Key>
+    <Property Name="ITEM_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="COMPANY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_food_company">
+    <End Role="company" Type="Self.company" Multiplicity="1" />
+    <End Role="food" Type="Self.food" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="COMPANY_ID" />
+      </Principal>
+      <Dependent Role="food">
+        <PropertyRef Name="COMPANY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="taskModel1StoreContainer">
+    <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="food" EntityType="Self.food" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [food].[ITEM_NAME] AS [ITEM_NAME], 
+    [food].[COMPANY_ID] AS [COMPANY_ID]
+    FROM [dbo].[food] AS [food]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_food_company" Association="Self.FK_food_company">
+      <End Role="company" EntitySet="company" />
+      <End Role="food" EntitySet="food" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

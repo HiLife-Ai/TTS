@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="taskModel1StoreContainer" CdmEntityContainer="taskEntities1">
+    <EntitySetMapping Name="companies">
+      <EntityTypeMapping TypeName="taskModel1.company">
+        <MappingFragment StoreEntitySet="company">
+          <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+          <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+          <ScalarProperty Name="COMPANY_CITY" ColumnName="COMPANY_CITY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="foods">
+      <EntityTypeMapping TypeName="taskModel1.food">
+        <MappingFragment StoreEntitySet="food">
+          <ScalarProperty Name="ITEM_NAME" ColumnName="ITEM_NAME" />
+          <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
