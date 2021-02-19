@@ -1,0 +1,40 @@
+﻿@model Day17.Models.EmployeeViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<div class="container" style="width:40%;margin-top:2%">
+
+    @using (Html.BeginForm("SaveRecord", "D17", FormMethod.Post))
+    {
+
+
+
+
+    @Html.DropDownListFor(model => model.DepartmentId, ViewBag.DepartmentList as SelectList, "--select--", new { @class = "form-control" });
+    
+
+    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Name" })
+
+     
+
+    @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "Address" })
+
+        
+
+
+    <input type="submit" value="Submit" class="btn btn-block btn-primary" />
+
+
+
+
+    }
+
+
+
+
+
+     </div>
+
