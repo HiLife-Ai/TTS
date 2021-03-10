@@ -1,0 +1,28 @@
+﻿@model Binding.Models.ClassView
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+
+<div class="container" style="width:40%;margin-top:2%">
+
+    @using (Html.BeginForm("SaveRecord", "Test", FormMethod.Post))
+    {
+        @Html.DropDownListFor(model => model.DepartmentId, ViewBag.DepartmentList as SelectList, "--select--", new { @class = "form-Control" });
+
+        @Html.TextBoxFor(model => model.EmpName, new { @class = "form-control", @placeholder = "EmpName" })
+        @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "Address" })
+
+        @*<div class="checkbox">
+             <label>
+                 @Html.CheckBoxFor(m=>m.Remember)
+                 check out this
+             </label>
+            </div>*@
+        <input type="submit" value="submit" class="btn btn-block btn-primary" />
+    }
+
+   </div>
+
