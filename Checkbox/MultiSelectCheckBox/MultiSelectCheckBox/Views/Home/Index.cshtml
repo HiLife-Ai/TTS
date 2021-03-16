@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MultiSelectCheckBox.ViewModel.SkillViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter.bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-mutiselect/master/dist/css/bootstrap-mutiselect.css" rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#ddListOfSkill").multiselect ({
+            includeSelectAllOption: true
+        });
+
+        $("#btnSave").click(function () {
+            SaveSelectedSkills();
+
+        });
+    });
+    function SaveSelectedSkills() {
+        var skillList = "";
+        var listOfSkill = [];
+        $.each($("#ddListOfSkill option:selected"),
+        function(index, data) {
+            // skillList += $(this).val() + " " + $(this).text() +"\n";
+            listOfSkill.push($(this).val());
+        });
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            url: '/Home/Index',
+            data: JSON.stringify({listOfSkill:listOfSkill,userId:1}),
+            success: function (data) {
+                if (data.success === true) {
+                    alert(data.message);
+                }
+            },
+            error: function () {
+                alert('There is some problem to process your request.');
+            }
+        });
+    }
+
+
+</script>
+
+<h2>Index</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="form-group">
+            <div class="checkbox-inline">
+                Select the Skill:
+                <select id="ddListOfSkill" multiple="multiple" class="form-control">
+                    @foreach (var item in Model)
+                    {
+                         <option value="@item.SkillId" selected="@item.IsChecked">@item.SkillName</option>
+
+ }
+                </select>
+            </div>
+            </div> 
+            </div>
+</div>
+  <div class="row">
+        <div class="form-group">
+            <input id="btnSave" type="button" value="Save" name="Save" class="btn btn-primary"/>
+
+        </div>
+
+    </div>
+
