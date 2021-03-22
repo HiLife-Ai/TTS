@@ -1,0 +1,39 @@
+﻿@model ModelBind.Models.ViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<h2>Index</h2>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<style>
+    .error{
+        color:red;
+    }
+</style>
+
+<div class="container" style="width:40%";margin-top:2%>
+    @using (Html.BeginForm("Index", "Test", FormMethod.Post))
+    {
+
+        @Html.DropDownListFor(model => model.DepartmentId, ViewBag.DepartmentList as SelectList, "--select--", new { @class = "form-Control", @placeholder = "DepartmentId" })
+        @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "error" })
+
+        @Html.TextBoxFor(model => model.EmpName, new { @class = "form-control", @placeholder = "Name" })
+        @Html.ValidationMessageFor(model => model.EmpName, "", new { @class = "error" })
+
+        @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "Address" })
+        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "error" })
+
+        @Html.TextBoxFor(model => model.SName, new { @class = "form-control", @placeholder = "SName" })
+
+        <input type="submit" value="Submit" class="btn btn-block btn-primary" />
+    }
+    
+</div>
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+
